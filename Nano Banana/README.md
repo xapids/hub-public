@@ -18,9 +18,6 @@
 - [3. Design principles](#design-principles)
 
 
-
-
-
 ## [Nano Banana – Image → JSON Extractor](./Image%20-%3E%20JSON%20Extractor.md)
 
 This extractor prompt converts a **single-room floor plan + interior photos** into a compact JSON description that Nano Banana can use as a geometric + semantic scene model.
