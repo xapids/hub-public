@@ -1,26 +1,5 @@
 # README
 
-
-## Table of Contents
-
-[Image → JSON Extractor](https://github.com/xapids/LLM/tree/main/Nano%20Banana#image--json-extractor)
-- [1. High‑level structure](https://github.com/xapids/LLM/blob/main/Nano%20Banana/README.md#1-high-level-structure)
-  - [1.1 legend](https://github.com/xapids/LLM/blob/main/Nano%20Banana/README.md#11-legend)
-  - [1.2 proj](https://github.com/xapids/LLM/blob/main/Nano%20Banana/README.md#12-proj)
-  - [1.3 media](https://github.com/xapids/LLM/blob/main/Nano%20Banana/README.md#13-media)
-  - [1.4 space](https://github.com/xapids/LLM/blob/main/Nano%20Banana/README.md#14-space--geometry-and-walls)
-  - [1.5 views](https://github.com/xapids/LLM/blob/main/Nano%20Banana/README.md#15-views--cameras-for-each-reference--render)
-  - [1.6 elems](https://github.com/xapids/LLM/blob/main/Nano%20Banana/README.md#16-elems--all-elements-in-the-room)
-  - [1.7 render](https://github.com/xapids/LLM/blob/main/Nano%20Banana/README.md#17-render--outputs-and-keepremove-rules)
-- [2. Usage](https://github.com/xapids/LLM/blob/main/Nano%20Banana/README.md#2-usage)
-   - [2.1 Step 1 – Extraction (this repo file)](https://github.com/xapids/LLM/blob/main/Nano%20Banana/README.md#21-step-1--extraction-this-repo-file)
-   - [2.2 Step 2 – Design / clear‑out / pseudo‑3D work](https://github.com/xapids/LLM/blob/main/Nano%20Banana/README.md#22-step-2--design--clear-out--pseudo-3d-work)
-- [3. Design principles](https://github.com/xapids/LLM/blob/main/Nano%20Banana/README.md#3-design-principles)
-
-[3D Modelling View Selection](https://github.com/xapids/LLM/tree/main/Nano%20Banana#3d-modelling-view-selection)
-
----
-
 ## [Image → JSON Extractor](./Image%20-%3E%20JSON%20Extractor.md)
 
 This extractor prompt converts a **single-room floor plan + interior photos** into a compact JSON description that Nano Banana can use as a geometric + semantic scene model.
