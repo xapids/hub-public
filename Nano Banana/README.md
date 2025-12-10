@@ -3,7 +3,7 @@
 
 ## Table of Contents
 
-[Nano Banana – Image → JSON Extractor](#nano-banana--image--json-extractor)
+[Image → JSON Extractor](#nano-banana--image--json-extractor)
 - [1. High‑level structure](https://github.com/xapids/LLM/blob/main/Nano%20Banana/README.md#1-high-level-structure)
   - [1.1 legend](https://github.com/xapids/LLM/blob/main/Nano%20Banana/README.md#11-legend)
   - [1.2 proj](https://github.com/xapids/LLM/blob/main/Nano%20Banana/README.md#12-proj)
@@ -18,7 +18,7 @@
 - [3. Design principles](https://github.com/xapids/LLM/blob/main/Nano%20Banana/README.md#3-design-principles)
 
 
-## [Nano Banana – Image → JSON Extractor](./Image%20-%3E%20JSON%20Extractor.md)
+## [Image → JSON Extractor](./Image%20-%3E%20JSON%20Extractor.md)
 
 This extractor prompt converts a **single-room floor plan + interior photos** into a compact JSON description that Nano Banana can use as a geometric + semantic scene model.
 
