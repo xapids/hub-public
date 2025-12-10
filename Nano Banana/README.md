@@ -1,5 +1,26 @@
 # README
 
+
+## Table of Contents
+
+[Nano Banana – Image → JSON Extractor](#nano-banana--image--json-extractor)
+ - [1. High‑level structure](#high-level-structure)
+  - [1.1 legend](#1-legend)
+  - [1.2 proj](#2-proj)
+  - [1.3 media](#3-media)
+  - [1.4 space – geometry and walls](#4-space--geometry-and-walls)
+  - [1.5 views – cameras for each reference / render](#5-views--cameras-for-each-reference--render)
+  - [1.6 elems – all elements in the room](#6-elems--all-elements-in-the-room)
+  - [1.7 render – outputs and keep/remove rules](#7-render--outputs-and-keepremove-rules)
+- [2. Usage](#usage)
+  - [2.1 Step 1 – Extraction (this repo file)](#step-1--extraction-this-repo-file)
+  - [2.2 Step 2 – Design / clear‑out / pseudo‑3D work](#step-2--design--clear-out--pseudo-3d-work)
+- [3. Design principles](#design-principles)
+
+
+
+
+
 ## [Nano Banana – Image → JSON Extractor](./Image%20-%3E%20JSON%20Extractor.md)
 
 This extractor prompt converts a **single-room floor plan + interior photos** into a compact JSON description that Nano Banana can use as a geometric + semantic scene model.
@@ -8,23 +29,23 @@ The extractor itself is LLM-based (e.g. Nano Banana in “text+vision” mode). 
 
 ---
 
-## High-level structure
+## 1. High-level structure
 
 The JSON has six main parts:
 
-- `legend` – mini dictionary of category codes and flags.  
-- `proj` – project metadata.  
-- `media` – input image filenames.  
-- `space` – room geometry (footprint and walls).  
-- `views` – camera positions for each reference image (and later, render views).  
-- `elems` – all room elements (floor, walls, windows, furniture, appliances, clutter).  
-- `render` – requested outputs + simple keep/remove rules by category.
+1.1 `legend` – mini dictionary of category codes and flags.  
+1.2 `proj` – project metadata.  
+1.3 `media` – input image filenames.  
+1.4 `space` – room geometry (footprint and walls).  
+1.6 `views` – camera positions for each reference image (and later, render views).  
+1.7 `elems` – all room elements (floor, walls, windows, furniture, appliances, clutter).  
+1.8 `render` – requested outputs + simple keep/remove rules by category.
 
 Very compact, but enough for coherent geometry and repeated render passes.
 
 ---
 
-## 1. `legend`
+## 1.1 `legend`
 
 ```json
 "legend": {
@@ -58,7 +79,7 @@ Purpose:
 
 ---
 
-## 2. `proj`
+## 1.2 `proj`
 
 ```json
 "proj": {
@@ -70,7 +91,7 @@ Just a human label for the current room / scenario. Useful for logging or multi-
 
 ---
 
-## 3. `media`
+## 1.3 `media`
 
 ```json
 "media": {
@@ -90,7 +111,7 @@ The extractor LLM sees these images directly; the JSON only stores filenames + i
 
 ---
 
-## 4. `space` – geometry and walls
+## 1.4 `space` – geometry and walls
 
 ```json
 "space": {
@@ -120,7 +141,7 @@ This gives Nano Banana a reusable, explicit floor shape + wall segmentation, rat
 
 ---
 
-## 5. `views` – cameras for each reference / render
+## 1.5 `views` – cameras for each reference / render
 
 ```json
 "views": [
@@ -161,7 +182,7 @@ For reference images, the extractor fills these. For synthetic render views, you
 
 ---
 
-## 6. `elems` – all elements in the room
+## 1.6 `elems` – all elements in the room
 
 Each entry describes one element or a group of elements.
 
@@ -231,7 +252,7 @@ Key fields:
 
 ---
 
-## 7. `render` – outputs and keep/remove rules
+## 1.7 `render` – outputs and keep/remove rules
 
 ```json
 "render": {
@@ -267,9 +288,9 @@ You can override `rules` in later design stages (e.g. keep furniture, change onl
 
 ---
 
-## Usage
+## 2. Usage
 
-### Step 1 – Extraction (this repo file)
+### 2.1 Step 1 – Extraction (this repo file)
 
 1. In a Nano Banana (or other LLM) chat:
    - Paste the full text from `Image -> JSON Extractor.md`.  
@@ -286,7 +307,7 @@ This JSON is now your **room model**.
 
 ---
 
-### Step 2 – Design / clear-out / pseudo-3D work
+### 2.2 Step 2 – Design / clear-out / pseudo-3D work
 
 In a new Nano Banana chat:
 
@@ -308,7 +329,7 @@ In a new Nano Banana chat:
 
 ---
 
-### Design principles
+### 3. Design principles
 
 - **Geometry first** – `space.geom` + `xy` + `H` ensure the room shape is explicit and reusable.  
 - **Categories for bulk ops** – `cat`, `keep_cat`, `rm_cat` and `rm`/`repl` give you simple clear-out and redesign rules.  
