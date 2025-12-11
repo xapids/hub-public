@@ -104,8 +104,11 @@ GEOMETRY & WALL ORDERING
 
 1) Treat the floor plan as 2D with x→right, y→up (or down, but be consistent).
 
-2) Find the closed polygon of the room footprint (the walkable interior boundary).  
-   Work in any convenient raw coordinates (xr, yr).
+2) Find the closed polygon of the room footprint (the walkable interior boundary).
+   **CRITICAL GEOMETRY RULE:**
+   - Look strictly at the floor plan. If the room is L-shaped, T-shaped, or has a notch/alcove (e.g. for stairs), you MUST capture all corners.
+   - Do NOT simplify the room into a rectangle.
+   - If there are 6 corners in the plan, your "pts" array must have 6 coordinates.
 
 3) Order the footprint vertices:
 
@@ -209,7 +212,16 @@ Every view in "views" is a concrete camera position that Nano Banana can render 
 ELEMENTS
 --------------------------------------------------
 
-For each visible, relevant element (windows, doors, counters, tables, appliances, decor clusters, etc.) create an "elems" entry.
+For each visible element, create an "elems" entry.
+**GRANULARITY RULE:** Do not group distinct objects into single "summary" elements. You must decompose:
+- **Furniture Groups:** A dining table and its chairs are separate elements.
+- **Embedded Fixtures:** A counter is one element; the sink and tap embedded in it are separate elements.
+- **Surface Items:** Large functional objects (e.g., a drying rack, a large basket, a standing lamp) are separate elements, not just "decor" or "clutter".
+- **Structural Features:** Dominant visual features (like beams, large overhead lines, or railings) must be captured as fixed elements.
+
+If an object is large enough to have a distinct material or function, list it separately.
+
+Do NOT ignore items just because they look like "clutter" if they are large or distinct.
 
 1) id:
 
