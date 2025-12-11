@@ -121,7 +121,9 @@ Local angle convention:
   cam_x = focus_x - r * cos(θ)
   cam_y = focus_y - r * sin(θ)
   ```
-  Clamp `cam_x`, `cam_y` into [0,1] so the camera stays inside or close to the room footprint.
+**VALIDATION:**
+- Check if `[cam_x, cam_y]` is inside the polygon defined by `space.geom.pts`.
+- If it is OUTSIDE (e.g. in the void of an L-shaped room), move the camera along the line towards `focus_xy` until it is safely inside the polygon.
 
 Create or update each view entry:
 
