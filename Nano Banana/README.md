@@ -2,38 +2,51 @@
 
 # README
 
-This folder defines the JSON contracts that Nano Banana uses for architectural renders a **single room at a time**. The JSON is an LLM-facing scene model: Nano Banana reads and writes it, and the render engine uses it to create images.
+This folder defines the JSON contracts that Nano Banana uses to work with a **single room at a time**. The JSON is an LLM-facing job description: Nano Banana reads it, and the render engine uses it to create images.
 
 It is intentionally **per-room**, not a whole-house schema.
 
 ---
 
-## 0. Pipeline (per room)
+## 0. Pipeline (per room, per call)
 
 For each room you want to work with, the intended flow is:
 
-1. Extract a room model (once per room)
+1. Extract a room model (once per room or per batch of images)
 
    * Use the prompt in [Image → JSON Extractor](./Image%20-%3E%20JSON%20Extractor.md).
    * Inputs: one floor plan image + one or more interior reference images of the *same* room.
-   * Output: a single JSON object describing the room geometry, walls, views, and elements (`elems`) with clear-out flags (`rm`/`repl`).
+   * Output: a JSON object describing:
 
-2. Optionally add canonical 3D-like views
+     * room geometry (`space`),
+     * contents (`elems` with `rm` / `repl` flags),
+     * candidate camera positions (`views`).
+
+2. (Optional) Add canonical 3D-like views
 
    * Use the prompt in [3D Modelling View Creator](./3D%20Modeling%20View%20Creator.md).
-   * Inputs: the JSON from step 1 + a **focus area** description and a `focus_key`.
-   * Output: the *same* JSON, but with extra orbit-style camera views and matching `render.outs` entries. Only `views` and `render.outs` are changed.
+   * Inputs: the JSON from step 1 + a **focus area** and a `focus_key`.
+   * Output: the same JSON, but with extra orbit-style camera views added to `views`.
 
-3. Use the JSON as the contract for design / clear-out prompts
+3. Before each Nano Banana call, prune views to control outputs and tokens
 
-   * Downstream prompts (for Nano Banana) take this JSON as input.
-   * You update `elems` (e.g. remove or add furniture) and maybe add more `views` / `render.outs`.
-   * The render engine does not guess the room; it trusts this JSON as the source of truth.
+   * Decide which camera ids you actually want images for on this call.
+   * Delete any `views[*]` entries you do not need.
+   * The JSON you send to Nano Banana should typically contain:
 
-This README is **explanatory only**. For exact field-by-field rules, always refer to the two prompt specs:
+     * the full `space` and `elems`, but
+     * only a small subset of `views` corresponding to shots you want now.
 
-* [Image → JSON Extractor](./Image%20-%3E%20JSON%20Extractor.md) – canonical single-room scene extractor.
+There is **no separate "render" section**. The rule is:
+
+* If a view is present in `views`, Nano Banana treats it as a requested render.
+* If a view is not present, it is ignored.
+
+This README is **explanatory only**. For exact field-by-field rules, see:
+
+* [Image → JSON Extractor](./Image%20-%3E%20JSON%20Extractor.md) – canonical single-room extractor.
 * [3D Modelling View Creator](./3D%20Modeling%20View%20Creator.md) – canonical orbit-view generator around a focus area.
+
 
 ---
 
@@ -55,7 +68,6 @@ The JSON has six main parts:
 1.4 `space` – room geometry (footprint and walls).  
 1.5 `views` – camera positions for each reference image (and later, render views).  
 1.6 `elems` – all room elements (floor, walls, windows, furniture, appliances, clutter).  
-1.7 `render` – requested outputs + simple keep/remove rules by category.
 
 Very compact, but enough for coherent geometry and repeated render passes.
 
@@ -268,51 +280,6 @@ Key fields:
 
 ---
 
-#### 1.7 `render` – outputs and keep/remove rules
-
-```json
-```json
-"render": {
-  "outs": [
-    {
-      "id": "r1",
-      "from": "v1",
-      "lens": { "t": "wide", "f": 18, "fov": 90 }
-    },
-    {
-      "id": "r2",
-      "from": "v2",
-      "lens": { "t": "wide", "f": 18, "fov": 90 }
-    }
-  ]
-}
-```
-
-* `outs`: which views to render.
-
-  * `id`: render id.
-  * `from`: which `views[*].id` to use as camera.
-  * `lens`: simple lens spec.
-
-Clear-out behaviour is controlled only by per-element flags in `elems`:
-
-* `elems[*].rm`:
-
-  * `true`  = remove this element in a clear-out / redesign render.
-  * `false` = keep this element.
-
-* `elems[*].repl`:
-
-  * If `rm=true`: short description of what should appear instead (e.g. `"extend_floor_and_walls"`, `"empty_floor"`).
-  * If `rm=false`: `null`.
-
-There are **no** category-level clear-out rules in `render`.
-
-
-You can override `rules` in later design stages (e.g. keep furniture, change only decor).
-
----
-
 ### 2. Usage
 
 #### 2.1 Step 1 – Extraction (this repo file)
@@ -367,7 +334,7 @@ This setup lets you use the same JSON both as:
 
 <br><br><br><br><br>
   
-## 3D Modelling View Creator
+## [3D Modelling View Creator](./3D%20Modeling%20View%20Creator.md)
 
 This spec takes an existing **single-room** JSON (from the Image → JSON Extractor) and adds a small family of pseudo-3D “orbit” views around a chosen focus area.
 
@@ -375,27 +342,22 @@ This spec takes an existing **single-room** JSON (from the Image → JSON Extrac
 
 * You choose a focus area (for example “front of the kitchen run”, “TV wall”, or a specific element / wall) and a short `focus_key` (e.g. `kit1`, `tv`, `desk`).
 
-* The LLM computes a `focus_xy` point inside the room and places up to four cameras on a small arc around it with fixed naming:
+* The LLM computes a `focus_xy` point inside the room and creates up to four standard views:
 
   * `v_<focus_key>_front`
   * `v_<focus_key>_left`
   * `v_<focus_key>_right`
   * `v_<focus_key>_over` (optional overhead / high angle)
 
-* For each view it also adds a matching render output in `render.outs`:
+* All of these are added to the `views` array. They are **just more cameras**; which of them you render on a given call is up to you.
 
-  * `r_<focus_key>_front`
-  * `r_<focus_key>_left`
-  * `r_<focus_key>_right`
-  * `r_<focus_key>_over` (if used)
-
-* It **never** changes walls, elements, or other pre-existing views / renders. It only adds or updates entries for the given `focus_key`.
+The spec never changes walls or elements. It only adds or updates `views` whose ids start with `v_<focus_key>_`.
 
 ### Inputs
 
 To use this spec you need:
 
-* The full room JSON produced by the Image → JSON Extractor (single-room only).
+* The room JSON produced by the Image → JSON Extractor (single-room only).
 * A text instruction that describes:
 
   * The `focus_key` you want to use.
@@ -406,28 +368,19 @@ To use this spec you need:
     * an explicit normalised coordinate `[x, y]` in [0,1]×[0,1], or
     * a short description like “middle of the south wall” or “centre of the TV wall”.
 
-### Outputs
+### Outputs and usage pattern
 
-The result is the **same JSON object**, but with:
+The result is the same JSON object, but with additional `views` entries.
 
-* New or updated `views` whose ids start with `v_<focus_key>_...`.
-* New or updated `render.outs` whose ids start with `r_<focus_key>_...`.
-
-Nothing else in the JSON should be changed unless you explicitly ask for it in your instruction.
-
-### Prompting pattern (how to run it)
-
-For a given room:
+Typical pattern:
 
 1. Paste the current room JSON.
+
 2. Paste the full text from [3D Modelling View Creator](./3D%20Modeling%20View%20Creator.md).
-3. Add an instruction such as:
 
-   * “Using `focus_key = "kit1"`, add orbit views around the main kitchen wall and update `views` and `render.outs` accordingly. Return the full updated JSON only.”
+3. Add an instruction, for example:
 
-If you need several focus areas (e.g. kitchen vs TV vs desk), call the spec multiple times with different `focus_key` values. Each call only touches the `v_<focus_key>_*` and `r_<focus_key>_*` entries for its own key.
+   * “Using `focus_key = "kit1"`, add orbit views around the main kitchen wall and return the full updated JSON only.”
 
-For the exact geometric rules (how `focus_xy` is chosen, radii, angles, heights), see the 3D spec file itself.
+4. From the updated JSON, keep only the view ids you want to render on this call (for example: `["v_kit1_front", "v_kit1_left"]`) and delete the rest of `views` before sending to Nano Banana.
 
-- Geometry-aware – everything is grounded in `space.geom.pts` and the normalised `xy` frame.
-- Token-efficient – the runtime JSON remains compact; heavy explanation lives in these .md files, not inside the JSON.
