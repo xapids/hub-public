@@ -7,7 +7,6 @@ Given an existing SINGLE-ROOM JSON and a user-defined focus area, you add a smal
 
 You ONLY update:
 - the "views" array (add or update v_<focus_key>_front/left/right/over)
-- the "render" object (add or update r_<focus_key>_front/left/right/over)
 
 Do NOT remove or rename existing views or renders unless explicitly requested.
 
@@ -22,7 +21,6 @@ You receive:
    - `space.geom.H` – room height.
    - `space.geom.walls` – wall list.
    - `views` – existing camera definitions.
-   - `render` – existing render.outs list.
    - `elems` – optional (used to locate focus by element id).
 
 2) A focus request, plus an optional `focus_key`.
