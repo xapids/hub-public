@@ -20,11 +20,18 @@ For each room you want to work with, the intended flow is:
      * contents (`elems` with `rm` / `repl` flags),
      * camera positions (`views`).
 
+   * **Manual Verification (Required):**
+     * **Height:** The extractor estimates `space.geom.H`. You **must** manually replace this with the exact physical ceiling height (e.g., `3.0`).
+     * **Geometry:** Check `space.geom.pts`. If the room is L-shaped or complex, ensure the polygon shape matches reality.
+
 2. (Optional) Add canonical 3D-like views
 
    * Use the prompt in View Creator.
    * Inputs: the JSON from step 1 + a **focus area** and a `focus_key`.
    * Output: the same JSON, but with extra orbit-style camera views added to `views`.
+
+   * **Manual Verification (Required):**
+     * **Void Check:** If the room is non-rectangular (L-shaped), check that the new camera `xy` coordinates do not fall into "void" space outside the walls.
 
 3. Before each Nano Banana call, prune views to control outputs and tokens
 
