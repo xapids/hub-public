@@ -104,9 +104,14 @@ Common parameters:
 
 Local angle convention:
 
-- Choose a “front” direction for the room:
-  - If the room’s longer dimension is along `x`, treat +x as front.  
-  - Otherwise, treat +y as front.
+- Identify the "front" direction from "space.geom.orientation" (if present).
+  - If "+x": θ_front = 0°
+  - If "-x": θ_front = 180°
+  - If "+y": θ_front = 90°
+  - If "-y": θ_front = 270°
+- If "orientation" is missing, fallback to dimensions:
+  - If x_range > y_range: Front is +x (0°).
+  - Else: Front is +y (90°).
 - Angles (in degrees):
   - `θ_front =   0°`
   - `θ_left  = +50°`
