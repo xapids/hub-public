@@ -38,12 +38,13 @@ From the floor plan and interior reference photos of a SINGLE room, output ONLY 
     ]
   },
 
-  "space": {
+"space": {
     "geom": {
       "pts": [
         [number, number]
       ],
       "H": number,
+      "orientation": "+x" | "-x" | "+y" | "-y",  <-- ADD THIS LINE
       "walls": [
         {
           "id": string,
