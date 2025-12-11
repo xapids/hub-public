@@ -1,1 +1,479 @@
-Hi
+{
+  "legend": {
+    "cat": {
+      "arch": "architecture surfaces (floor, wall, ceiling)",
+      "open": "openings (window, door, arch)",
+      "fix": "fixed elements (ceiling fan, AC, built-in light, radiator)",
+      "furn": "furniture (tables, chairs, benches, sofa, shelves)",
+      "appl": "appliances",
+      "dec": "decor (art, posters, decorative lamps, plants)",
+      "grp": "group of small items / clutter"
+    },
+    "pos_rel": {
+      "on": "on one wall",
+      "between": "between two walls or at a corner",
+      "floor": "free-standing on floor",
+      "ceil": "attached mainly to ceiling"
+    },
+    "vis": {
+      "f": "fully visible",
+      "p": "partially visible",
+      "o": "mostly occluded"
+    }
+  },
+  "proj": {
+    "name": "utility_room_and_dining"
+  },
+  "media": {
+    "floor": "image_0.png",
+    "refs": [
+      {
+        "id": "v_ref_1",
+        "file": "image_1.png"
+      },
+      {
+        "id": "v_ref_2",
+        "file": "image_2.png"
+      },
+      {
+        "id": "v_ref_3",
+        "file": "image_3.png"
+      }
+    ]
+  },
+  "space": {
+    "geom": {
+      "pts": [
+        [0, 0],
+        [0, 1],
+        [1, 1],
+        [1, 0]
+      ],
+      "H": 2.4,
+      "orientation": "-y",
+      "walls": [
+        {
+          "id": "w1",
+          "seq": 1,
+          "p0": 0,
+          "p1": 1,
+          "label": "counter_wall"
+        },
+        {
+          "id": "w2",
+          "seq": 2,
+          "p0": 1,
+          "p1": 2,
+          "label": "stair_opening_wall"
+        },
+        {
+          "id": "w3",
+          "seq": 3,
+          "p0": 2,
+          "p1": 3,
+          "label": "window_door_wall"
+        },
+        {
+          "id": "w4",
+          "seq": 4,
+          "p0": 3,
+          "p1": 0,
+          "label": "end_window_wall"
+        }
+      ]
+    }
+  },
+  "views": [
+    {
+      "id": "v1",
+      "ref": "v_ref_1",
+      "cam": {
+        "rel": "corner",
+        "w1": "w2",
+        "w2": "w3",
+        "xy": [0.85, 0.9],
+        "h": 1.6
+      }
+    },
+    {
+      "id": "v2",
+      "ref": "v_ref_2",
+      "cam": {
+        "rel": "corner",
+        "w1": "w4",
+        "w2": "w1",
+        "xy": [0.15, 0.1],
+        "h": 1.6
+      }
+    },
+    {
+      "id": "v3",
+      "ref": "v_ref_3",
+      "cam": {
+        "rel": "wall",
+        "w1": "w3",
+        "w2": null,
+        "xy": [0.9, 0.75],
+        "h": 1.6
+      }
+    }
+  ],
+  "elems": [
+    {
+      "id": "floor_1",
+      "cat": "arch",
+      "type": "floor",
+      "pos": {
+        "rel": "floor",
+        "w1": null,
+        "w2": null,
+        "xy": [0.5, 0.5],
+        "h": 0,
+        "sz": [null, null, null]
+      },
+      "views": [
+        {
+          "v": "v1",
+          "bb": [0, 1, 0, 0.6],
+          "vis": "f"
+        },
+        {
+          "v": "v2",
+          "bb": [0, 1, 0, 0.7],
+          "vis": "f"
+        },
+        {
+          "v": "v3",
+          "bb": [0, 1, 0, 0.6],
+          "vis": "f"
+        }
+      ],
+      "d": "tile_terracotta_square_red_dark_grout",
+      "rm": false,
+      "repl": null
+    },
+    {
+      "id": "ceil_1",
+      "cat": "arch",
+      "type": "ceiling",
+      "pos": {
+        "rel": "ceil",
+        "w1": null,
+        "w2": null,
+        "xy": [0.5, 0.5],
+        "h": 2.6,
+        "sz": [null, null, null]
+      },
+      "views": [
+        {
+          "v": "v1",
+          "bb": [0, 1, 0.7, 1],
+          "vis": "f"
+        },
+        {
+          "v": "v2",
+          "bb": [0, 1, 0.8, 1],
+          "vis": "f"
+        },
+        {
+          "v": "v3",
+          "bb": [0, 1, 0.7, 1],
+          "vis": "f"
+        }
+      ],
+      "d": "plaster_white_flat",
+      "rm": false,
+      "repl": null
+    },
+    {
+      "id": "win_end_1",
+      "cat": "open",
+      "type": "window",
+      "pos": {
+        "rel": "on",
+        "w1": "w4",
+        "w2": null,
+        "xy": [0.5, 0],
+        "h": 1.2,
+        "sz": [0.8, 1.2, null]
+      },
+      "views": [
+        {
+          "v": "v1",
+          "bb": [0.25, 0.45, 0.3, 0.6],
+          "vis": "f"
+        },
+        {
+          "v": "v3",
+          "bb": [0.35, 0.55, 0.3, 0.6],
+          "vis": "f"
+        }
+      ],
+      "d": "window_casement_black_frame",
+      "rm": false,
+      "repl": null
+    },
+    {
+      "id": "win_side_1",
+      "cat": "open",
+      "type": "window",
+      "pos": {
+        "rel": "on",
+        "w1": "w3",
+        "w2": null,
+        "xy": [1, 0.3],
+        "h": 1.2,
+        "sz": [0.8, 1.2, null]
+      },
+      "views": [
+        {
+          "v": "v1",
+          "bb": [0.85, 1, 0.3, 0.7],
+          "vis": "p"
+        },
+        {
+          "v": "v2",
+          "bb": [0.6, 0.8, 0.3, 0.6],
+          "vis": "f"
+        },
+        {
+          "v": "v3",
+          "bb": [0.7, 0.9, 0.3, 0.7],
+          "vis": "p"
+        }
+      ],
+      "d": "window_casement_black_frame",
+      "rm": false,
+      "repl": null
+    },
+    {
+      "id": "door_side_1",
+      "cat": "open",
+      "type": "door",
+      "pos": {
+        "rel": "on",
+        "w1": "w3",
+        "w2": null,
+        "xy": [1, 0.7],
+        "h": 1.1,
+        "sz": [0.9, 2.2, null]
+      },
+      "views": [
+        {
+          "v": "v2",
+          "bb": [0.8, 1, 0, 0.8],
+          "vis": "f"
+        },
+        {
+          "v": "v3",
+          "bb": [0.85, 1, 0, 0.9],
+          "vis": "p"
+        }
+      ],
+      "d": "door_glass_black_frame",
+      "rm": false,
+      "repl": null
+    },
+    {
+      "id": "pass_through_1",
+      "cat": "open",
+      "type": "pass_through",
+      "pos": {
+        "rel": "on",
+        "w1": "w1",
+        "w2": null,
+        "xy": [0, 0.6],
+        "h": 1.2,
+        "sz": [0.8, 0.8, null]
+      },
+      "views": [
+        {
+          "v": "v2",
+          "bb": [0.2, 0.4, 0.4, 0.7],
+          "vis": "f"
+        }
+      ],
+      "d": "opening_square_wood_trim",
+      "rm": false,
+      "repl": null
+    },
+    {
+      "id": "stair_open_1",
+      "cat": "open",
+      "type": "opening",
+      "pos": {
+        "rel": "on",
+        "w1": "w2",
+        "w2": null,
+        "xy": [0.5, 1],
+        "h": 1.1,
+        "sz": [1.5, 2.2, null]
+      },
+      "views": [
+        {
+          "v": "v2",
+          "bb": [0, 0.3, 0, 0.8],
+          "vis": "f"
+        }
+      ],
+      "d": "opening_to_stairs",
+      "rm": false,
+      "repl": null
+    },
+    {
+      "id": "fan_1",
+      "cat": "fix",
+      "type": "ceiling_fan",
+      "pos": {
+        "rel": "ceil",
+        "w1": null,
+        "w2": null,
+        "xy": [0.5, 0.5],
+        "h": 2.4,
+        "sz": [null, null, null]
+      },
+      "views": [
+        {
+          "v": "v1",
+          "bb": [0.3, 0.7, 0.7, 0.95],
+          "vis": "f"
+        },
+        {
+          "v": "v2",
+          "bb": [0.4, 0.7, 0.8, 1],
+          "vis": "f"
+        },
+        {
+          "v": "v3",
+          "bb": [0.4, 0.7, 0.7, 0.95],
+          "vis": "f"
+        }
+      ],
+      "d": "fan_ceiling_metal_wood_blades",
+      "rm": false,
+      "repl": null
+    },
+    {
+      "id": "ac_1",
+      "cat": "fix",
+      "type": "ac_unit",
+      "pos": {
+        "rel": "on",
+        "w1": "w1",
+        "w2": null,
+        "xy": [0, 0.2],
+        "h": 2.2,
+        "sz": [0.8, 0.3, 0.2]
+      },
+      "views": [
+        {
+          "v": "v2",
+          "bb": [0.3, 0.5, 0.7, 0.8],
+          "vis": "f"
+        },
+        {
+          "v": "v3",
+          "bb": [0.2, 0.4, 0.7, 0.8],
+          "vis": "f"
+        }
+      ],
+      "d": "ac_split_unit_white",
+      "rm": false,
+      "repl": null
+    },
+    {
+      "id": "counter_1",
+      "cat": "furn",
+      "type": "counter",
+      "pos": {
+        "rel": "on",
+        "w1": "w1",
+        "w2": null,
+        "xy": [0, 0.5],
+        "h": 0.9,
+        "sz": [0.6, 0.9, 4]
+      },
+      "views": [
+        {
+          "v": "v1",
+          "bb": [0.5, 1, 0.3, 0.6],
+          "vis": "f"
+        },
+        {
+          "v": "v2",
+          "bb": [0, 0.6, 0.3, 0.6],
+          "vis": "f"
+        },
+        {
+          "v": "v3",
+          "bb": [0, 0.5, 0.3, 0.6],
+          "vis": "f"
+        }
+      ],
+      "d": "counter_wood_top_cabinets_wood",
+      "rm": true,
+      "repl": "empty_floor"
+    },
+    {
+      "id": "table_1",
+      "cat": "furn",
+      "type": "dining_table",
+      "pos": {
+        "rel": "floor",
+        "w1": null,
+        "w2": null,
+        "xy": [0.5, 0.4],
+        "h": 0.75,
+        "sz": [1.8, 0.75, 0.9]
+      },
+      "views": [
+        {
+          "v": "v1",
+          "bb": [0.2, 0.6, 0.3, 0.6],
+          "vis": "f"
+        },
+        {
+          "v": "v2",
+          "bb": [0.4, 0.8, 0.3, 0.6],
+          "vis": "f"
+        },
+        {
+          "v": "v3",
+          "bb": [0.3, 0.8, 0.3, 0.7],
+          "vis": "f"
+        }
+      ],
+      "d": "table_oval_black",
+      "rm": true,
+      "repl": "empty_floor"
+    },
+    {
+      "id": "appl_wash_1",
+      "cat": "appl",
+      "type": "washing_machine",
+      "pos": {
+        "rel": "on",
+        "w1": "w1",
+        "w2": null,
+        "xy": [0, 0.15],
+        "h": 0.45,
+        "sz": [0.6, 0.9, 0.6]
+      },
+      "views": [
+        {
+          "v": "v2",
+          "bb": [0.45, 0.65, 0.2, 0.5],
+          "vis": "f"
+        },
+        {
+          "v": "v3",
+          "bb": [0.35, 0.55, 0.2, 0.5],
+          "vis": "f"
+        }
+      ],
+      "d": "washing_machine_white",
+      "rm": true,
+      "repl": "empty_floor"
+    }
+  ]
+}
