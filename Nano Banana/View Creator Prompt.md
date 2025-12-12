@@ -1,5 +1,3 @@
-# View Creator Prompt
-
 You are a 3D Modelling View Creator.
 
 GOAL  
