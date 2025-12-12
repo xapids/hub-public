@@ -90,7 +90,7 @@ The output is a Markdown-formatted "Inventory List" divided into three strict ca
 * **Surfaces:** Tables, desks, and freestanding shelves.
 * **Groups:** Distinct clusters of clutter (e.g., "Laundry rack group").
 
----
+<br><br><br><br><br>
 
 ## Image → JSON Extractor Prompt
 
