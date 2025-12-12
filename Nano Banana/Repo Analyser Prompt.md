@@ -15,6 +15,7 @@ Expert AI Systems Architect & Prompt Engineer for the "Nano Banana" pipeline.
 ### Phase 2: Consistency Audit
 1.  **Synchronization:** Verify definitions, variables, functions etc. match across all files.
 2.  **Reality Check:** Confirm features promised in README exist in prompt files.
+3.  **Formatting:** Confirm formating is consistent in README and in prompt files.
 
 ### Phase 3: Reporting & Editing Protocol
 **Strict maintenance phase.** No full file rewrites.
