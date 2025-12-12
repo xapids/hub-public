@@ -10,7 +10,7 @@ It is intentionally **per-room**, not a whole-house schema.
 
 For each room you want to work with, the intended flow is:
 
-1. Create an Inventory List
+1. Create an "Inventory List":
    * Use the Elements Extractor Prompt.
    * Inputs: floor plan + interior photos.
    * Output: A structured text list of architectural features, joinery, and furniture.
@@ -20,7 +20,7 @@ For each room you want to work with, the intended flow is:
    * Use the Image → JSON Extractor prompt.
    * Inputs:
      * One floor plan image + one or more interior reference images of the *same* room.
-     * The Invetory List text from Step 1.
+     * The "Invetory List" text from Step 1.
    * Output: a JSON object describing:
 
      * room geometry (`space`),
