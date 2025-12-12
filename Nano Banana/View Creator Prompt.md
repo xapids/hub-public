@@ -122,8 +122,11 @@ Local angle convention:
   cam_y = focus_y - r * sin(θ)
   ```
 **VALIDATION:**
-- Check if `[cam_x, cam_y]` is inside the polygon defined by `space.geom.pts`.
-- If it is OUTSIDE (e.g. in the void of an L-shaped room), move the camera along the line towards `focus_xy` until it is safely inside the polygon.
+- **Visual Safety Check:** Look at the floor plan image. Does the calculated `[cam_x, cam_y]` fall into a "dead zone" (outside the walls, inside a column, or in the void of an L-shape)?
+- **Void Correction Strategy:**
+  - If the standard angle places the camera in a void, **ignore the angle**.
+  - Instead, place the camera at `focus_xy` and move it backwards 1.5 meters towards the **visual centre (centroid)** of the room's walkable floor area.
+  - This ensures the camera is always "inside looking out" rather than "outside looking in."
 
 Create or update each view entry:
 
