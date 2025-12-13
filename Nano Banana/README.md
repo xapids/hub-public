@@ -4,7 +4,7 @@ This folder defines the JSON contracts that Nano Banana uses to work with a **si
 
 It is intentionally **per-room**, not a whole-house schema.
 
----
+<br><br>
 
 ## Files
   **README** - Architectural Source of Truth (Workflow Logic/Contract)
