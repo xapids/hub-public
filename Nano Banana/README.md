@@ -6,6 +6,15 @@ It is intentionally **per-room**, not a whole-house schema.
 
 ---
 
+## Files
+  README - Architectural Source of Truth (Workflow Logic/Contract).
+  Elements Extractor Prompt - Technical Source of Truth (Execution Instructions).
+  Image -> JSON Extractor Prompt - Technical Source of Truth (Execution Instructions).
+  View Creator Prompt - Technical Source of Truth (Execution Instructions).
+  Repo Analyser Prompt - Standalone Repo Tester
+
+---
+
 ## Pipeline
 
 For each room you want to work with, the intended flow is:
