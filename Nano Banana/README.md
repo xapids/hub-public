@@ -8,7 +8,7 @@ It is intentionally **per-room**, not a whole-house schema.
 
 ## Files
   **README** - Architectural Source of Truth (Workflow Logic/Contract)  
-  **Elements Extractor Prompt** - Technical Source of Truth (Execution Instructions)  
+  **Elements + Walls Extractor Prompt** - Technical Source of Truth (Execution Instructions)  
   **Image -> JSON Extractor Prompt** - Technical Source of Truth (Execution Instructions)  
   **View Creator Prompt** - Technical Source of Truth (Execution Instructions)  
   **Repo Analyser Prompt** - Standalone Repo Tester  
@@ -63,7 +63,7 @@ This README is **explanatory only**. For exact field-by-field rules, see the fil
 
 <br><br>
 
-## Elements Extractor Prompt
+## Elements + Walls Extractor Prompt
 
 This prompt acts as the project's **"Surveyor"**. It converts visual data into a rigorous, text-based inventory *before* any JSON coding happens.
 
