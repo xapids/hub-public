@@ -13,6 +13,7 @@
 - Use this exact schema:
 
 {
+"bill_of_quantities": {
   "legend": {
       "arch": "architecture / structural surfaces & features (beams, columns, exposed trusses, steps, level changes, distinctive floor sections (if multiple types), ceiling features)",
       "open": "openings (window, door, passage/arch)",
@@ -33,7 +34,8 @@
     "H": number
   },
   "elems": [
-    { "cat": "arch" | "open" | "fix" | "furn" | "appl" | "dec" | "grp", "d": string },
-    { "cat": "arch" | "open" | "fix" | "furn" | "appl" | "dec" | "grp", "d": string }
+    { "cat": "arch" | "open" | "fix" | "furn" | "appl" | "dec" | "grp", "qty": number, "d": string },
+    { "cat": "arch" | "open" | "fix" | "furn" | "appl" | "dec" | "grp", "qty": number, "d": string }
   ]
+}
 }
