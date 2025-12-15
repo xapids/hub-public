@@ -125,7 +125,8 @@ Local angle convention:
 - **Visual Safety Check:** Look at the floor plan image. Does the calculated `[cam_x, cam_y]` fall into a "dead zone" (outside the walls, inside a column, or in the void of an L-shape)?
 - **Void Correction Strategy:**
   - If the standard angle places the camera in a void, **ignore the angle**.
-  - Instead, place the camera at `focus_xy` and move it backwards 1.5 meters towards the **visual centre (centroid)** of the room's walkable floor area.
+- **Unit Conversion Rule:** If a movement is defined in physical meters (e.g., "1.5 meters" or user request "move back 1m"), you MUST convert it to normalized grid units using: `distance_grid = distance_meters / meters_per_unit`.
+   - **Void Correction:** If the angle places the camera in a void, ignore the angle. Place the camera at `focus_xy` and move it backwards by **1.5 meters (converted to grid units)** towards the visual centre of the room.
   - This ensures the camera is always "inside looking out" rather than "outside looking in."
 
 Create or update each view entry:
