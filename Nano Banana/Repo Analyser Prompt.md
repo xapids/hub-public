@@ -19,14 +19,14 @@ THINK HARD
    * Sync:
      * Verify strict name/key matches across all files.
      * Confirm features promised in README exist in prompts.
+     * Confirm files use same structure.
    * Token Optimisaiton: Confirm file contents are condensed through specificity, optimising for token efficiency.
 
 ### Phase 2: Reporting
 **Part A: The "Kill" List (Critical Failures)**
 List logic that breaks geometry, physics, or data integrity (e.g., "Step 4 normalizes coordinates but fails to save aspect ratio").
 
-**Part B: Optimization & Hygiene**
-List engine inefficiencies (orphaned data), consistency errors (typos/mismatched keys), or formatting issues.
+**Part B: List Consistency & Optimization finds**
 
 ### Comments
 If in this chat user requests file edits: 
