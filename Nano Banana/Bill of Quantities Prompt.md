@@ -1,11 +1,14 @@
 #### Task: Analyze floor plan and reference photos to extract:
 1. **Geometry:** List of walls including measurements; room height
 2. **Inventory:** Rigorous "Bill of Quantities" of ALL interior elements
+3. **Views:** Convert EACH reference photo into a "view" 
 
 #### CRITICAL RULES:
 1. **Geometry:** Scan floor plan for dimension text (e.g., "1.9m"). List ONLY walls with explicit text. Ignore unmeasured lines.
-2. **Inventory:** : Zero estimation. Count exactly (e.g. "3x Chairs", not "some chairs"). Decompose assemblies (Table + Chairs = separate items)
-3. **Architectural Scan:** Look specifically for structural features: beams, columns, arches, steps, dado rails, cornices, and skylights.
+2. **Inventory:** 
+  *  Zero estimation. Count exactly (e.g. "3x Chairs", not "some chairs"). Decompose assemblies (Table + Chairs = separate items)
+  *  Look specifically for structural features: beams, columns, arches, steps, dado rails, cornices, and skylights.
+5. **Views:** Create exactly one `views[]` entry per reference image with id (e.g., `v_1`, `v_2`) and `ref` with image filename/id
 
 #### OUTPUT FORMAT:
 - Return ONLY valid, concise JSON
@@ -37,5 +40,9 @@
     { "cat": "arch" | "open" | "fix" | "furn" | "appl" | "dec" | "grp", "d": string },
     { "cat": "arch" | "open" | "fix" | "furn" | "appl" | "dec" | "grp", "d": string }
   ]
+  "views": [
+    { "id": string, "ref": string },
+    { "id": string, "ref": string }
+  ],
 }
 }
