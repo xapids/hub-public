@@ -30,11 +30,10 @@
       "furn": "furniture",
       "dec": "decor",
       "grp": "grouped clutter volumes",
-      "wall": "walls",
       "L": "length_in_meters",
       "H": "ceiling_height_in_meters"
     },
-  "space": {
+  "space": { "corner_order": "CW",
     "walls": [
       { "id": string, "L": number, "c0": string, "c1": string },
       { "id": string, "L": number, "c0": string, "c1": string }    
