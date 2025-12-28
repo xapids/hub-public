@@ -196,7 +196,9 @@ The "views" array defines the cameras for this room. Each entry is a camera defi
 
 For each reference image you must:
 
-1. Create a "views" entry.
+1. For each BoQ `bill_of_quantities.views[]` entry you must:
+   * Create ONE `media.refs[]` entry {id=<BoQ.id>, file=<BoQ.ref>} AND exactly one `views[]` entry with `id=<BoQ.id>` and `ref=<BoQ.id>`.
+   * Do NOT create any additional `views`/`media.refs`; if any BoQ ref image is missing/unmatched, output questions and stop.
 
 2. Set cam.rel:
 
