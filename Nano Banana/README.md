@@ -8,7 +8,7 @@ It is intentionally **per-room**, not a whole-house schema.
 
 ## Files
   **README** - Architectural Source of Truth (Workflow Logic/Contract)  
-  **Elements + Walls Extractor Prompt** - Technical Source of Truth (Execution Instructions)  
+  **Bill of Quantities Prompt** - Technical Source of Truth (Execution Instructions)  
   **Image -> JSON Extractor Prompt** - Technical Source of Truth (Execution Instructions)  
   **View Creator Prompt** - Technical Source of Truth (Execution Instructions)  
   **Repo Analyser Prompt** - Standalone Repo Tester  
@@ -19,10 +19,10 @@ It is intentionally **per-room**, not a whole-house schema.
 
 For each room you want to work with, the intended flow is:
 
-1. Create an "Inventory List":
-   * Use the Elements Extractor Prompt.
-   * Inputs: floor plan + interior photos.
-   * Output: A structured text list of architectural features, joinery, and furniture.
+1. Create a Bill of Quantities (BoQ) boundary contract (once per room)
+   * Use BoQ Prompt.
+   * Inputs: marked floor plan (boundary arrows + length label in meters for EVERY perimeter segment; ceiling height label `H=` in meters; interior photos.
+   * Output: BoQ JSON (`bill_of_quantities`) containing `space` (CW corners + closed-loop walls with L, plus `H`), `elems` inventory, and `views` (1 per ref photo).
    * This step ensures no items are missed before coding begins.
 
 2. Extract a room model (once per room or per batch of images)
@@ -35,10 +35,6 @@ For each room you want to work with, the intended flow is:
      * room geometry (`space`),
      * contents (`elems` with `rm` / `repl` flags),
      * camera positions (`views`).
-
-   * **⚠️ Manual Verification (Required):**
-     * **Height:** The extractor estimates `space.geom.H`. You **must** manually replace this with the exact physical ceiling height (e.g., `3.0` = 3 meters).
-     * **Geometry:** Check `space.geom.pts`. If the room is L-shaped or complex, ensure the polygon shape matches reality.
 
 3. (Optional) Add canonical 3D-like views
 
@@ -199,11 +195,11 @@ The extractor LLM sees these images directly; the JSON only stores filenames + i
     "pts": [[0,0],[1,0],[1,0.71],[0.4,0.71],[0,1]],
     "H": 2.6,
     "walls": [
-      { "id": "w1", "seq": 1, "p0": 0, "p1": 1, "label": "entrance_wall" },
-      { "id": "w2", "seq": 2, "p0": 1, "p1": 2, "label": "window_wall_long" },
-      { "id": "w3", "seq": 3, "p0": 2, "p1": 3, "label": "back_wall" },
-      { "id": "w4", "seq": 4, "p0": 3, "p1": 4, "label": "short_wall" },
-      { "id": "w5", "seq": 5, "p0": 4, "p1": 0, "label": "stair_wall" }
+      { "id": "w1", "seq": 1, "p0": 0, "p1": 1 },
+      { "id": "w2", "seq": 2, "p0": 1, "p1": 2 },
+      { "id": "w3", "seq": 3, "p0": 2, "p1": 3 },
+      { "id": "w4", "seq": 4, "p0": 3, "p1": 4 },
+      { "id": "w5", "seq": 5, "p0": 4, "p1": 0 }
     ]
   }
 }
@@ -212,7 +208,7 @@ The extractor LLM sees these images directly; the JSON only stores filenames + i
 - `bounds`: [width, length] in **physical meters** (read from floor plan dimensions).
 - `pts`: polygon vertices of the room footprint, **normalised** to [0,1] via Uniform Scaling (aspect ratio preserved).
   - Index i in this array is used as `p0` / `p1` in walls.  
-- `H`: room height.
+- `H`: ceiling height in meters
 - `walls`: each wall is a segment between two vertices (`p0`→`p1`) and has:
   - `id`: stable identifier (`"w1"`, `"w2"`, …).  
   - `seq`: perimeter order index (1-based).  
@@ -340,7 +336,7 @@ Key fields:
 1. In a Nano Banana (or other LLM) chat:
    - Paste the full text from `Image -> JSON Extractor Prompt.md`.  
    - Attach:
-     - One floor plan image of a single room.  
+     - One marked floor plan image of a single room (boundary arrows + all wall lengths in meters + `H=` in meters).  
      - 1–4 interior reference photos of that same room.
 
 2. Ask the model to run the extractor once:
