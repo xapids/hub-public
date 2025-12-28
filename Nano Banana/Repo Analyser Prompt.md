@@ -34,6 +34,7 @@ If in this chat user requests file edits:
 - Respond incisively: maximise information density per token while preserving all semantics; remove non-essential words.
 - use this **EXACT format**:
 
+> Brief explanation of edit purpose; max 3 sentences
 > **File:** `[Exact Filename]`
 > **Location:** `[Section Header or Line approx.]`
 > **Original Text:**
