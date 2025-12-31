@@ -113,9 +113,9 @@ Local angle convention:
   - If x_range > y_range: Front is +x (0°).
   - Else: Front is +y (90°).
 - Angles (in degrees):
-  - `θ_front = computed from `space.geom.orientation` above (or fallback).
-  - `θ_left  = +50°`
-  - `θ_right = −50°`
+  - `θ_front = computed from space.geom.orientation above (or fallback).`
+  - `θ_left  = θ_front + 50°`
+  - `θ_right = θ_front - 50°`
 - For angle θ (converted to radians), compute camera xy:
   ```
   cam_x = focus_x - r * cos(θ)
