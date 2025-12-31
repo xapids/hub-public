@@ -15,9 +15,9 @@ You are a vision + geometry extractor.
       - Do NOT skip/add new elems types/views beyond BoQ; do not infer topology/add new corners/walls; do not output `bill_of_quantities.space.corners[]/walls[]`
 
 2. **Geometry Check:**    
-   - Topology is BoQ-only: immutable `space.corners[]` (CW) + `space.walls[]` (single closed loop; `space.corner_order="CW"`). Ignore all non-BoQ lines/spaces.
-   - Output `space.geom.pts[]` aligned 1:1 to BoQ corners (pts[i] ↔ corners[i], no reorder). Use plan ONLY to infer turns/directions for this fixed loop; use BoQ L as metric truth.
-   - Output `space.geom.walls[]` aligned 1:1 to BoQ walls (same ids/order); set p0/p1 by corner-id lookup from BoQ c0/c1. If plan implies different adjacency/order, output questions and stop.
+   - Topology is BoQ-only: immutable `bill_of_quantities.space.corners[]` (CW) + `bill_of_quantities.space.walls[]` (single closed loop). Ignore all non-BoQ lines/spaces.
+   - Output `space.geom.pts[]` aligned 1:1 to `bill_of_quantities.space.corners[]` (pts[i] ↔ corners[i], no reorder). Use plan ONLY to infer turns/directions for this fixed loop; use BoQ L as metric truth.
+   - Output `space.geom.walls[]` aligned 1:1 to `bill_of_quantities.space.walls[]` (same ids/order); set p0/p1 by corner-id lookup from BoQ c0/c1. If plan implies different adjacency/order, output questions and stop.
 
 3. **JSON Generation (The "Coding" Phase):**
    - Map every item from BoQ into "elems" array of the schema below.
@@ -122,9 +122,9 @@ GEOMETRY & WALL ORDERING
 
 3) Corner order is fixed by BoQ (CW):
 
-   - Corners = BoQ `space.corners[]` (already clockwise).
-   - Set pts[i] = coordinates for corners[i] (no reordering).
-   - Walk perimeter using BoQ adjacency/order only.
+   - Corners (input) = `bill_of_quantities.space.corners[]` (CW).
+   - Set pts[i] = coordinates for `bill_of_quantities.space.corners[i]` (no reordering).
+   - Walk perimeter using BoQ `bill_of_quantities.space.walls[]` adjacency/order only.
 
 4) Determine Physical Scale (CRITICAL):
 
@@ -132,7 +132,7 @@ GEOMETRY & WALL ORDERING
    - Compute raw metric corner coords raw_p[i] (meters) from BoQ topology + plan-inferred directions; bounds are axis-aligned: x_range_m=max(raw_p.x)-min(raw_p.x), y_range_m=max(raw_p.y)-min(raw_p.y).
    - Store "space.geom.bounds": [x_range_m, y_range_m] (meters, from raw_p before normalization).
 
-6) Normalise using UNIFORM SCALING (Preserve Aspect Ratio):
+5) Normalise using UNIFORM SCALING (Preserve Aspect Ratio):
 
    - Compute raw bounding box:
        raw_w = xmax - xmin
@@ -145,11 +145,11 @@ GEOMETRY & WALL ORDERING
    - Store the ordered, normalised vertices in "space.geom.pts".
      *Note: The longer dimension will span [0, 1]. The shorter dimension will be < 1.0.*
 
-7) Define walls:
+6) Define walls:
 
-   - Use BoQ `space.walls[]` as the ONLY wall set (loop already closed).
-   - Build `space.geom.walls[]` in the SAME order as BoQ walls (seq=1..N).
-   - Map endpoints by corner-id lookup: p0=idx(c0), p1=idx(c1) where idx() is index in BoQ `space.corners[]` (CW).
+   - Use `bill_of_quantities.space.walls[]` as the ONLY wall set (loop already closed).
+   - Build `space.geom.walls[]` in the SAME order as `bill_of_quantities.space.walls[]` (seq=1..N).
+   - Map endpoints by corner-id lookup: p0=idx(c0), p1=idx(c1) where idx() is index in `bill_of_quantities.space.corners[]` (CW).
    - Do NOT add/infer walls or lengths.
    - seq: perimeter order; label: short token (default = BoQ wall id).
   
