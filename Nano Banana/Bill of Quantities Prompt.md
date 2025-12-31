@@ -30,7 +30,7 @@
 - Use this exact schema:
 
 {
-"bill_of_quantities": {
+"BoQ": {
   "legend": {
       "arch": "architecture / structural surfaces & features (beams, columns, exposed trusses, steps, level changes, distinctive floor sections (if multiple types), ceiling features)",
       "open": "openings (window, door, passage/arch)",
