@@ -30,7 +30,7 @@ List logic that breaks geometry, physics, or data integrity (e.g., "Step 4 norma
 
 ### Comments
 If in this chat user requests file edits: 
-- provide edits for relevant sections; no full rewrites; each with unique number for referencing
+- provide edits for relevant sections; no full rewrites; each with unique numbering for referencing
 - Respond incisively: maximise information density per token while preserving all semantics; remove non-essential words.
 - use this **EXACT format**:
 
