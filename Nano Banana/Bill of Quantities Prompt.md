@@ -51,6 +51,6 @@
   "views": [
     { "id": string, "ref": string },
     { "id": string, "ref": string }
-  ],
+  ]
 }
 }
