@@ -78,12 +78,18 @@ By separating the "seeing" (inventory) from the "coding" (JSON formatting), we s
 
 ### Inputs
 
-* The prompt text from Elements Extractor Prompt
-* The **same** image set you will use for the JSON Extractor (1 floor plan + interior reference photos).
+* The *Perception Prompt*
+* Marked floor plan (boundary arrows + length label in meters for EVERY perimeter segment; ceiling height label `H=` in meters)
+* Interior reference images.
 
 ### Output Structure
 
-The output is a Markdown-formatted "Inventory List" divided into three strict categories. You will copy-paste this output into the *Integration Prompt* in the next step.
+The output is a valid JSON object (`perception`) containing the inventory, topological wall sequence, and view definitions. 
+You will pass this JSON output into the *Arithmetic Prompt* and *Integration Prompt* in subsequent steps.
+
+The JSON block is passed directly into:
+1. The **Arithmetic Prompt** (to resolve geometry).
+2. The **Integration Prompt** (to populate the scene).
 
 A. Architecture & Openings (The Shell)
 * **Windows & Doors:** Exact counts of every opening.
@@ -346,18 +352,15 @@ Key fields:
 
 #### 2.1 Step 1 – Extraction (this repo file)
 
-1. In a Nano Banana (or other LLM) chat:
-   - Paste the full text from `Image -> JSON Extractor Prompt.md`.  
-   - Attach:
-     - One marked floor plan image of a single room (boundary arrows + all wall lengths in meters + `H=` in meters).  
-     - 1–4 interior reference photos of that same room.
+1. Input:
+   - *Integration Prompt*
+   - `perception` JSON
+   - `arithmetic` JSON
+   -  Marked floor plan (boundary arrows + length label in meters for EVERY perimeter segment; ceiling height label `H=` in meters)
+   -  Interior reference images.
 
-2. Ask the model to run the extractor once:
-   - It should output ONLY the JSON object described above (no explanations).
-
-3. Save the JSON output and the image set together.
-
-This JSON is now your **room model**.
+2. Output:  
+   - `integration` JSON, which is now your **room model**.
 
 ---
 
