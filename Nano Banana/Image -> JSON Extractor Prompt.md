@@ -3,7 +3,7 @@ You are a vision + geometry extractor.
 
 #### PROCESS OVERVIEW (Strict Order):
 1. **Bill of Quantities (BoQ/boq) Reconciliation:**
-   - **Input BoQ:** `boq.space.corners[]`, `boq.space.walls[]`, `boq.elems[]`, `boq.views[]`.
+   - **Input:** `boq` JSON block consisting of `boq.space.corners[]`, `boq.space.walls[]`, `boq.elems[]`, `boq.views[]`.
    - **Output:**
       - `space.geom.pts[]` (1:1 order↔`boq.space.corners[]`),
       - `space.geom.walls[]` (1:1 ids/order↔`boq.space.walls[]`),
@@ -15,10 +15,13 @@ You are a vision + geometry extractor.
       - If `boq.elems[]` has `w_id` (null | `"w4"` | `"w1,w2,..."`): on expansion assign instance `pos.rel:"on"`, `pos.w1` by list order. Never parse wall ids from `d`.
       - Do NOT skip/add new elems types/views beyond BoQ; do not infer topology/add new corners/walls; do not output `boq.space.corners[]/walls[]`
 
-2. **Geometry Check:**    
-   - Topology is BoQ-only: immutable `boq.space.corners[]` (CW) + `boq.space.walls[]` (single closed loop). Ignore all non-BoQ lines/spaces.
-   - Output `space.geom.pts[]` aligned 1:1 to `boq.space.corners[]` (pts[i] ↔ corners[i], no reorder). Use plan ONLY to infer turns/directions for this fixed loop; use BoQ L as metric truth.
-   - Output `space.geom.walls[]` aligned 1:1 to `boq.space.walls[]` (same ids/order); set p0/p1 by corner-id lookup from BoQ c0/c1. If plan implies different adjacency/order, output questions and stop.
+2. **Geometry Normalization (Arithmetic Input):**
+   - **Input:** Pre-calculated `raw_geometry` JSON block consisting of `raw_geometry.points[]` and `raw_geometry.bounds{}` in meters
+   - **Action:**
+     - Compute raw width/height: `raw_w = bounds.max_x - bounds.min_x`; `raw_h = bounds.max_y - bounds.min_y`.
+     - Determine uniform scaling factor: `S = max(raw_w, raw_h)`.
+     - Normalize all raw pts into [0,1] space: `x_norm = (x_raw - bounds.min_x) / S`; `y_norm = (y_raw - bounds.min_y) / S`.
+   - **Output:** Populate `space.geom.pts[]` with these normalized values. These are immutable rigid boundaries for the rest of the process.
 
 3. **JSON Generation (The "Coding" Phase):**
    - Map every item from BoQ into "elems" array of the schema below.
@@ -113,40 +116,13 @@ You are a vision + geometry extractor.
 GEOMETRY & WALL ORDERING
 --------------------------------------------------
 
-1) Treat the floor plan as 2D with x→right, y→up (or down, but be consistent).
+1) **Immutable Geometry:** The `space.geom.pts[]` calculated in Process Step 2 are fixed. Do not adjust them based on visual interpretation of the plan. They are the rigid container for the room content.
 
-2) Use BoQ perimeter topology (do not detect it).
-   **CRITICAL TOPOLOGY RULE:**
-   - BoQ corners/walls define scope + vertex count; do NOT add/remove corners (even if plan shows extra detail, e.g., stair alcove).
-   - Use floor plan only to estimate angles/turns between consecutive BoQ corners when fitting coordinates.
-   - If the BoQ loop cannot match the plan shape, output questions and stop.
+2) **Physical Scale:**
+   - Use the raw bounds computed in Process Step 2 to define physical size: `x_range_m = raw_geometry.bounds.max_x - raw_geometry.bounds.min_x`, `y_range_m = raw_geometry.bounds.max_y - raw_geometry.bounds.min_y`.
+   - Store these in "space.geom.bounds": [x_range_m, y_range_m].
 
-3) Corner order is fixed by BoQ (CW):
-
-   - Corners (input) = `boq.space.corners[]` (CW).
-   - Set pts[i] = coordinates for `boq.space.corners[i]` (no reordering).
-   - Walk perimeter using BoQ `boq.space.walls[]` adjacency/order only.
-
-4) Determine Physical Scale (CRITICAL):
-
-   - Use BoQ wall lengths (L) as metric truth; do NOT re-extract dimension text.
-   - Compute raw metric corner coords raw_p[i] (meters) from BoQ topology + plan-inferred directions; bounds are axis-aligned: x_range_m=max(raw_p.x)-min(raw_p.x), y_range_m=max(raw_p.y)-min(raw_p.y).
-   - Store "space.geom.bounds": [x_range_m, y_range_m] (meters, from raw_p before normalization).
-
-5) Normalise using UNIFORM SCALING (Preserve Aspect Ratio):
-
-   - Compute raw bounding box:
-       raw_w = xmax - xmin
-       raw_h = ymax - ymin
-   - Determine the scaling factor (max dimension):
-       S = max(raw_w, raw_h)
-   - For each Vertex Ci = (xr, yr), compute:
-       x = (xr - xmin) / S
-       y = (yr - ymin) / S
-   - Store the ordered, normalised vertices in "space.geom.pts".
-     *Note: The longer dimension will span [0, 1]. The shorter dimension will be < 1.0.*
-
-6) Define walls:
+3) Define walls:
 
    - Use `boq.space.walls[]` as the ONLY wall set (loop already closed).
    - Build `space.geom.walls[]` in the SAME order as `boq.space.walls[]` (seq=1..N).
@@ -165,13 +141,14 @@ GEOMETRY & WALL ORDERING
    Where:
    - p0, p1 are integer indices into "pts".  
 
-7) Set "space.geom.H" to the approximate room height (e.g. 2.6).
+4) Set "space.geom.H" to the approximate room height (e.g. 2.6).
 
-8) Define "space.geom.orientation":
+5) Define "space.geom.orientation":
    - Determine the logical "front" of the room (usually facing the main window or the main activity wall).
    - Output one string: "+x", "-x", "+y", or "-y".
    - This tells downstream tools which direction in the normalised plan is "forward".
 
+  
 --------------------------------------------------
 FLOOR COORDINATES (xy)
 --------------------------------------------------
