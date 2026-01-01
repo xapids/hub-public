@@ -30,7 +30,7 @@
 3. **Views:** Create exactly one `views[]` entry per reference image with id (e.g., `v_1`, `v_2`) and `ref` with image filename/id
 
 #### OUTPUT Process:
-1. **Thought Block:** First, create a thought block where you process the image step-by-step.
+1. **Thought Block:** First, create a thought block where you process the image step-by-step showing your work.
    * List the raw walls and turns.
    * List every item found. If an item has a count > 1 (e.g., "2x Windows"), explicitly state the rule requirement: "Rule check: '2x Windows' on w7 requires two wall IDs: 'w7, w7'".
 
