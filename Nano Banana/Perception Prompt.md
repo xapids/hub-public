@@ -34,7 +34,7 @@
    * List the raw walls and turns.
    * List every item found. If an item has a count > 1 (e.g., "2x Windows"), explicitly state the rule requirement: "Rule check: '2x Windows' on w7 requires two wall IDs: 'w7, w7'".
 
-2. **FINAL JSON**: After validating your findings in the thought block, generate the final JSON object strictly using tothis exact schema:
+2. **FINAL JSON**: After validating your findings in the thought block, generate the final JSON object using strictly this exact schema:
 
 {
 "perception": {
