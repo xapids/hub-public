@@ -34,6 +34,7 @@ You are a vision + geometry extractor.
 - Use this exact schema:
 
 {
+"integration": {
   "task": {
     "intent": "Architecturally_prepare_room_for_future_design_renders",
     "scope": "render_ALL_views",
@@ -110,6 +111,7 @@ You are a vision + geometry extractor.
       "repl": string | null
     }
   ]
+ }
 }
 
 --------------------------------------------------
