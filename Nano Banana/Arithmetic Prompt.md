@@ -12,7 +12,7 @@ CRITICAL RULES (Arithmetic ONLY, No Perception)
        - If `Ti` is "straight" or null: `D` remains unchanged `(dx, dy)`.
        - If `Ti` is "right_90": New `D` becomes `(dy, -dx)`.
        - If `Ti` is "left_90": New `D` becomes `(-dy, dx)`.
-       - If `Ti` is "angled": This is the final closing wall. Ignore vector math. The next corner coordinate is strictly `(0.0, 0.0)`.
+       - If `Ti` is "angled": Non-orthogonal; read θ from `dir:"theta_deg:<float>"`, set `D=(cosθ, sinθ)`, then proceed with vertex math.
     b. Calculate Next Vertex:
        - Next corner coordinate = Current coordinate + `(D.x * Li, D.y * Li)`.
 4. Output Raw Coordinates: Generate the list of exact raw coordinates for all corners.
