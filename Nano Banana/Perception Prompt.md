@@ -11,7 +11,7 @@
     1.2 Output a SINGLE closed loop: list `space.corners[]` CLOCKWISE; each `space.walls[]` uses adjacent corners (c0→c1 … c(n-1)→c0).
     1.3 Topology Sequence: 
         * For `w1` ONLY: set `dir:"+x"`, `turn:null`.
-        * For `w2..wN`: set `dir:null`; determine `turn` relative to previous wall. Use ONLY these tokens: "straight", "right_90" (clockwise), "left_90" (counter-clockwise), or "angled" (only if clearly non-orthogonal).
+        * For `w2..wN`: set `dir:null`; determine `turn` relative to previous wall. Use ONLY these tokens: "straight", "right_90" (clockwise), "left_90" (counter-clockwise), or "angled" (only if clearly non-orthogonal). If `turn:"angled"`, you MUST also set `dir:"theta_deg:<float>"` (absolute heading, degrees CCW from +X).
    
 2. **Inventory:** 
     *  Zero estimation. Count exactly. Include count in "d" if quantity > 1 (e.g. "3x Chairs", not "some chairs"). Decompose assemblies (Table + Chairs = separate items)
