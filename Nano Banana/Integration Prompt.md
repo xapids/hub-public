@@ -243,13 +243,24 @@ For each element in the Bill of Quantities, create an "elems" entry.
      - "ceil"    = mainly attached to the ceiling (ceiling fan, pendant).
 
    - w1, w2:
-     - If `perception.elems[].w_id`:
-        - If `w_id` is a single wall id: exactly one instance exists → set `pos.rel:"on"`, `pos.w1:<id>`, `pos.w2:null`; do not override.
-        - If `w_id` is a comma-list: number of instances MUST equal list length → assign `pos.rel:"on"`, `pos.w1` per-instance by list order.
-        - If `w_id` null, infer normally (incl. two-wall "between").
-        - Do NOT parse wall ids from `d`.
-     - Use wall ids from "space.geom.walls".  
+     - Treat `perception.elems[].w_id` as a human-checked anchor: if non-null, it is authoritative; do not override.
+     - If `w_id` is a single wall id: force `pos.rel:"on"`, set `pos.w1:<id>`, `pos.w2:null`.
+     - If `w_id` is a comma-list: it MUST be consumed during expansion (1 wall id per expanded instance, by list order); post-expansion each instance `w_id` MUST be a single id; force `pos.rel:"on"`, `pos.w2:null`.
+     - If `w_id` is null: infer `pos.rel`/`xy`; set `pos.w1/pos.w2` ONLY when strongly supported (e.g., xy is within ε of two wall segments for "between"/corner), otherwise leave null.
+     - Do NOT parse wall ids from `d`.
+     - Validate wall ids against "space.geom.walls".  
      - Consistent with rel:
+       - "on": w1 is the wall it is on; w2 = null.  
+       - "between": w1 and w2 are the two walls it is between.  
+       - "floor"/"ceil": w1/w2 may be null or indicate the nearest wall(s).
+
+   - w1, w2:
+     1. Do NOT parse wall ids from `d`.
+     2. Normalise `w_id`: If `w_id` is a comma-list, it MUST be consumed during expansion (1 wall id per expanded instance by list order); post-expansion each instance `w_id` MUST be single wall id or null.
+     3. Validate: If `w_id` is non-null, it MUST match an id in `space.geom.walls[].id`; otherwise output questions and stop.
+     4. If `w_id` non-null: Treat as human-checked anchor; force `pos.rel:"on"`, set `pos.w1:<id>`, `pos.w2:null`
+     5. If `w_id` null: Infer `pos.rel`/`xy`; set `pos.w1/pos.w2` ONLY when strongly supported (e.g., xy lies very near two wall segments meeting at a corner for "between"), otherwise leave null.
+     6. Consistency: Consistent with rel:
        - "on": w1 is the wall it is on; w2 = null.  
        - "between": w1 and w2 are the two walls it is between.  
        - "floor"/"ceil": w1/w2 may be null or indicate the nearest wall(s).
