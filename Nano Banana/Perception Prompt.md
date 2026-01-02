@@ -18,8 +18,8 @@
     *  Wall association For wall-attached/embedded elements:
         * Set `"w"` to wall id string (e.g.`"w4"`).
         * If "d" doesn't include explicit count, `"w":"<wall_id>"`
-        * If "d" includes explicit count like `"4x ..."`
-            * encode ONE wall id per instance (e.g. `"w":"w1, w2, w5, w6"`)
+        * If "d" specifies explicit count Nx, like `"4x ..."`:
+            * `w_id` MUST be a comma-separated list of exactly N wall ids, one per instance, ordered by wall id (e.g. `"w_id":"w1, w2, w5, w6"`).
             * repeat ids when multiple are on the same wall (e.g. `"w":"w4, w4, w7, w7"`)
             * amount of ids MUST match explicit count
             * list wall ids in ascending perimeter id order (w1..wN), grouping repeats together.
