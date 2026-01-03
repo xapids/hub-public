@@ -1,4 +1,4 @@
-### CLI Best Practices 
+### CLI & Git/Github Best Practices 
 
 ---
 
