@@ -1,3 +1,7 @@
+### CLI Best Practices
+
+---
+
 #### Legend
 - **Repository** (concept): a directory of files.
 - **Git**: `.git/`; optional metadata enabling version control.
