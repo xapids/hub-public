@@ -106,3 +106,6 @@ Guide written by the author:
 ### Personal AI systems
 - Video: https://www.youtube.com/watch?v=Le0DLrn7ta0&t=1190s
 - Blog post: https://danielmiessler.com/blog/personal-ai-infrastructure
+
+### People to follow
+-  Dex - Humanlayer/Codelayer Founder - 🦄 ai that works host - https://x.com/dexhorthy?s=20
