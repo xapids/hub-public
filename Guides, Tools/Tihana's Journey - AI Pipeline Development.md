@@ -86,20 +86,20 @@ CodeLayer UI on Windows via a remote hosted macOS machine
 
 1.1 Installation steps (remote Mac approach: Windows as a thin client)
 
-* Rent a hosted Mac (recommended simplest: MacStadium “Mac mini”), then remote into its macOS desktop from Windows using a VNC client. ([macstadium.com][1])
+* Rent a hosted Mac (recommended simplest: MacStadium “Mac mini”), then remote into its macOS desktop from Windows using a VNC client. [1]
 * On the remote Mac, install CodeLayer using one of the official macOS methods:
 
-  * Homebrew cask: `brew install --cask --no-quarantine humanlayer/humanlayer/codelayer` ([humanlayer.dev][2])
-  * Or download the DMG from GitHub releases and drag the app into Applications. ([GitHub][3])
-* Launch CodeLayer on the remote Mac and do all agent work there (Claude Code integration, prompts, etc.). ([humanlayer.dev][2])
+  * Homebrew cask: `brew install --cask --no-quarantine humanlayer/humanlayer/codelayer` [2]
+  * Or download the DMG from GitHub releases and drag the app into Applications. [3]
+* Launch CodeLayer on the remote Mac and do all agent work there (Claude Code integration, prompts, etc.). [2]
 
 ### 1.1.1 Explicit “do this” steps (one concrete provider + apps)
 
-* Provider: MacStadium (hosted Mac mini). Remote desktop app on Windows: RealVNC “VNC Viewer” (MacStadium explicitly recommends it for accessing the Mac desktop). ([macstadium.com][1])
-* Connect: install VNC Viewer on Windows, enter the MacStadium connection details, log in, and you will see the macOS desktop in a window. ([macstadium.com][1])
-* Install CodeLayer on that macOS desktop via Homebrew cask (above) or DMG release method (above). ([GitHub][4])
+* Provider: MacStadium (hosted Mac mini). Remote desktop app on Windows: RealVNC “VNC Viewer” (MacStadium explicitly recommends it for accessing the Mac desktop). [1]
+* Connect: install VNC Viewer on Windows, enter the MacStadium connection details, log in, and you will see the macOS desktop in a window. [1]
+* Install CodeLayer on that macOS desktop via Homebrew cask (above) or DMG release method (above). [4]
 
-(Alternative provider with official docs: AWS EC2 Mac. GUI access is via Apple Remote Desktop/VNC after initial setup; it is usually more setup-heavy than a managed Mac desktop provider.) ([AWS Documentation][5])
+(Alternative provider with official docs: AWS EC2 Mac. GUI access is via Apple Remote Desktop/VNC after initial setup; it is usually more setup-heavy than a managed Mac desktop provider.) [5]
 
 ### 1.2 Git (local filesystem) vs GitHub (remote) in the remote Mac setup
 
@@ -139,11 +139,17 @@ Guide written by the author:
 
 ---
 
-## If You Have Extra Time and are interested in further exploration
+## Extras
 
 ### Personal AI systems
 - Video: https://www.youtube.com/watch?v=Le0DLrn7ta0&t=1190s
 - Blog post: https://danielmiessler.com/blog/personal-ai-infrastructure
 
 ### People to follow
--  Dex - Humanlayer/Codelayer Founder - 🦄 ai that works host - https://x.com/dexhorthy?s=20
+- Dex - Humanlayer/Codelayer Founder - 🦄 ai that works host - https://x.com/dexhorthy?s=20
+
+### Resources
+- Humanlayer/Codelayer discord server - very active and supportive devs - https://discord.gg/VJbMU2KC
+
+---
+
