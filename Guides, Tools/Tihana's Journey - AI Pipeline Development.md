@@ -126,16 +126,9 @@ A GitHub repository gives you:
 
 Effectively, GitHub is a high‑efficiency collaborative file management system. 
 
-See the CLI + Git/GitHub guide linked below.
-
----
-
 ## CLIs and GitHub Guide
-
-Guide written by the author:
-- Focus: How CLIs and Git/GitHub work together (not a Git manual).
-- Fully editable:
-  https://github.com/xapids/LLM/blob/c72c906014c57fcc70074cb3c96f3a054f070e23/CLI%20%2B%20Git%2C%20Github%20Guide.md
+- Guide written by me - `/LLM CLI + Git, Github Guide.md`
+- Focus: How LLM Models and Git/GitHub work together - This is NOT a guide on how GitHub works and does not replace a guide specificaly for GitHub. It explains how to work with LLMs and Github together.
 
 ---
 
