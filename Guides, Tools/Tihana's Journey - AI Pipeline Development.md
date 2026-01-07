@@ -42,9 +42,7 @@ Think of sub‑agents as **additional context windows** you can orchestrate.
 
 ### Workflow basics -  To get familiar with the enviroment. How it looks, explicit steps etc.
 - https://www.youtube.com/watch?v=rfDvkSkelhg&t=7s
-- Video: https://www.youtube.com/watch?v=32xfY8ct6Qw&t=1871s  
-- Support document:  
-  https://aiadvantage.notion.site/Claude-Code-Ultimate-Starter-Kit-25a6426aaf6980ce8a37f19ce2f4a3be
+- https://www.youtube.com/watch?v=32xfY8ct6Qw&t=1871s  
 
 ---
 
