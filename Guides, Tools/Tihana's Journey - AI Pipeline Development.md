@@ -7,41 +7,8 @@ It is intended as a living reference rather than a step‑by‑step tutorial.
 
 ---
 
-## Getting Started with Claude Code
-
-### Installation
+## Claude Code Installation
 - Only read installation instructions, dont bother with the rest of the document: https://docs.google.com/document/d/1fyIBcSlbYNipWNURXOMUQL0Sb2DBHr9qBZKjgnQ7tl8/edit?tab=t.0#heading=h.iicwv6vi9ecb
-
-### Optional: Agent use‑case examples from Nate B Jones
-- Skim for inspiration:  
-  https://docs.google.com/document/d/1iUntmg8Wx_Zx0UJm_JZ2JKLWW-rn76wJwNc6wUnFhiM/edit?tab=t.0#heading=h.fscq0ovl563v
----
-
-## Entry level Mental Models for Claude Code and Agents
-
-### Concepts 
-#### Entry points - To understand shift in workflow approach:
-  - https://www.youtube.com/watch?v=JC2dR2RHcEM&t=7s
-  - https://www.youtube.com/watch?v=rfDvkSkelhg&t=7s
-
-#### Agents
-- Main Claude/Codex terminal = main agent.
-- Sub‑agents:
-  - Have separate context windows.
-  - Pass *results only* (handoffs), not full reasoning traces.
-  - Enable parallelism, chaining, and evaluation/merging steps.
- 
-#### Multi‑model workflows
-- Run each section of a pipeline the best LLM Model for its job.
-- Hand off results to a sub‑agent for evaluation and merging.
-- Example: Deep research (Chatgpt) + social search (Grok) + general web search (Perplexity), merged by Claude.
-
-Think of sub‑agents as **additional context windows** you can orchestrate.
-
-### Workflow basics -  To get familiar with the enviroment. How it looks, explicit steps etc.
-- Video: https://www.youtube.com/watch?v=32xfY8ct6Qw&t=1871s  
-- Support document:  
-  https://aiadvantage.notion.site/Claude-Code-Ultimate-Starter-Kit-25a6426aaf6980ce8a37f19ce2f4a3be
 
 ---
 
@@ -52,9 +19,32 @@ Think of sub‑agents as **additional context windows** you can orchestrate.
 - Focus: LLM limitations, best practices, Workflow Ideas
 - Dex, one of the host, develops the wrapper **HumanLayer** and IDE **Codelayer**.
 
-### Mandatory episodes - Watch episodes with the visuals, dont only listen to - Conceptual level of Humanlayer and Codelayer workflow
+**Mandatory episodes** - Watch episodes with the visuals, dont only listen to - Conceptual level of Humanlayer and Codelayer workflow
 - Context Engineering: https://www.youtube.com/watch?v=42AzKZRNhsk
 - Claude for non‑coding tasks: https://youtu.be/NJcph4j9sNg
+
+### Agents
+- Main Claude/Codex terminal = main agent.
+- Sub‑agents:
+  - Have separate context windows.
+  - Pass *results only* (handoffs), not full reasoning traces.
+  - Enable parallelism, chaining, and evaluation/merging steps.
+ 
+**Multi‑Agent workflows**
+- Run the same prompt in 4 instances/agents in parallel.
+- 5th agent evaluates outcomes, either picking the best or merging them for the 5th version.
+
+Think of sub‑agents as **additional context windows** you can orchestrate.
+
+---
+
+## Getting Accustomed to Claude Code environment
+
+### Workflow basics -  To get familiar with the enviroment. How it looks, explicit steps etc.
+- https://www.youtube.com/watch?v=rfDvkSkelhg&t=7s
+- Video: https://www.youtube.com/watch?v=32xfY8ct6Qw&t=1871s  
+- Support document:  
+  https://aiadvantage.notion.site/Claude-Code-Ultimate-Starter-Kit-25a6426aaf6980ce8a37f19ce2f4a3be
 
 ---
 
@@ -124,19 +114,15 @@ A GitHub repository gives you:
 - Ability to branch, revert, and experiment safely
 - Private or public repositories
 
-Effectively, GitHub is a high‑efficiency collaborative file management system. 
+Effectively, GitHub is a high‑efficiency collaborative file management environment. 
 
 ## CLIs and GitHub Guide
 - Guide written by me - `/LLM CLI + Git, Github Guide.md`
-- Explains ONLY how LLM Models and Git/GitHub work together - This is NOT a guide on how GitHub itself works. It does NOT replace a guide specificaly for how GitHub works. 
+- Explains ONLY how LLM CLIs and Git/GitHub work together - This is NOT a guide on how GitHub itself works. It does NOT replace a guide specificaly for how GitHub works. 
 
 ---
 
 ## Extras
-
-### Personal AI systems
-- Video: https://www.youtube.com/watch?v=Le0DLrn7ta0&t=1190s
-- Blog post: https://danielmiessler.com/blog/personal-ai-infrastructure
 
 ### People to follow
 - Dex - Humanlayer/Codelayer Founder - 🦄 ai that works host - https://x.com/dexhorthy?s=20
@@ -144,5 +130,11 @@ Effectively, GitHub is a high‑efficiency collaborative file management system.
 ### Resources
 - Humanlayer/Codelayer discord server - very active and supportive devs - https://discord.gg/VJbMU2KC
 
----
+### Personal AI systems
+- Video: https://www.youtube.com/watch?v=Le0DLrn7ta0&t=1190s
+- Blog post: https://danielmiessler.com/blog/personal-ai-infrastructure
+
+### Agent use‑case examples from Nate B Jones
+- Skim for inspiration:  
+  https://docs.google.com/document/d/1iUntmg8Wx_Zx0UJm_JZ2JKLWW-rn76wJwNc6wUnFhiM/edit?tab=t.0#heading=h.fscq0ovl563v
 
