@@ -128,7 +128,7 @@ Effectively, GitHub is a high‑efficiency collaborative file management system.
 
 ## CLIs and GitHub Guide
 - Guide written by me - `/LLM CLI + Git, Github Guide.md`
-- Focus: How LLM Models and Git/GitHub work together - This is NOT a guide on how GitHub works and does not replace a guide specificaly for GitHub. It explains how to work with LLMs and Github together.
+- Explains ONLY how LLM Models and Git/GitHub work together - This is NOT a guide on how GitHub itself works. It does NOT replace a guide specificaly for how GitHub works. 
 
 ---
 
