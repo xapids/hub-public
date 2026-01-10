@@ -157,7 +157,7 @@
       },
       {
         "id": "wrapper_approval_note",
-        "label": "Wrapper/approval",
+        "label": "wrapper/approval",
         "role": "note",
         "lane": null,
         "group_id": "grp_main_stack",
