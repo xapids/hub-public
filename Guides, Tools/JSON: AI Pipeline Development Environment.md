@@ -80,7 +80,7 @@
       },
       {
         "id": "layer3",
-        "label": "LAYER 3 — Execution Boundary (Critical Control Plane)\nLocation: Inside agent runtime or wrapper process\nPurpose: Gate side-effecting actions\nExamples:\n• HumanLayer (human-in-the-loop approval wrapper)\n• Policy/ approval wrappers\n• SDK calls pass through this boundary before execution\n• Hooks (lifecycle + execution triggers)\n“Intercepts tool/SDK calls. Pauses before side effects. Requires approval. Logs decisions.”\n\nBoundary Between Intent and Action\nSDK → Wrapper → Execute",
+        "label": "LAYER 3 — Execution Boundary (Critical Control Plane)\nLocation: Inside agent runtime or wrapper process\nPurpose: Gate side-effecting actions\nExamples:\n• HumanLayer (human-in-the-loop approval wrapper)\n• Policy/ approval wrappers\n• SDK calls pass through this boundary before execution\n• Hooks (lifecycle + execution triggers)\n“Intercepts tool/SDK calls. Pauses before side effects. Requires approval. Logs decisions.”\n\nBoundary Between Intent and Action,
         "role": "process",
         "lane": null,
         "group_id": "grp_main_stack",
