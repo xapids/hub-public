@@ -244,8 +244,8 @@
       { "id": "e_persist_to_layer4", "from": "persist_body", "to": "layer4", "label": "", "style": { "line_type": "dashed", "arrowhead": "none" } },
       { "id": "e_gui_to_layer1", "from": "gui_layer", "to": "layer1", "label": "screen visibility", "style": { "line_type": "dashed", "arrowhead": "none" } },
       { "id": "e_gui_to_layer2", "from": "gui_layer", "to": "layer2", "label": "screen visibility", "style": { "line_type": "dashed", "arrowhead": "none" } },
-      { "id": "e_tool_request_4_to_3", "from": "tool_call_request_note", "to": "wrapper_approval_note", "label": "", "style": { "line_type": "dashed", "arrowhead": "standard" } },
-      { "id": "e_tool_request_3_to_2", "from": "wrapper_approval_note", "to": "execute_note", "label": "", "style": { "line_type": "dashed", "arrowhead": "standard" } },
+      { "id": "e_tool_request_layer_4_to_layer_3", "from": "tool_call_request_note", "to": "wrapper_approval_note", "label": "", "style": { "line_type": "dashed", "arrowhead": "standard" } },
+      { "id": "e_tool_request_layer_3_to_layer_2", "from": "wrapper_approval_note", "to": "execute_note", "label": "", "style": { "line_type": "dashed", "arrowhead": "standard" } },
       { "id": "e_tool_request_label_anchor", "from": "tool_call_request_note", "to": "layer2", "label": "", "style": { "line_type": "none", "arrowhead": "none" } }
     ],
     "groups": [
