@@ -58,7 +58,7 @@
       },
       {
         "id": "layer5",
-        "label": "LAYER 5 — Reasoning / Planning (LLMs)\nLocation: Model inference\nPurpose: Decide what should be done\nExamples:\n• Codex\n• Claude Code\n• Planning / ReAct logic\n• Tool selection\nDescription:\n“Produces intent and plans. No direct side effects.”",
+        "label": "LAYER 5 — Reasoning / Planning (LLMs)\nLocation: Model inference\nPurpose: Decide what should be done\nExamples:\n• Codex\n• Claude Code\n• Planning / ReAct logic\n• Tool selection\n“Produces intent and plans. No direct side effects.”",
         "role": "process",
         "lane": null,
         "group_id": "grp_main_stack",
@@ -69,7 +69,7 @@
       },
       {
         "id": "layer4",
-        "label": "LAYER 4 — Agent Runtime / Orchestrator\nLocation: Application runtime\nPurpose: Coordinate workflows and tools\nExamples:\n• Agents\n• Sub-agents\n• Skill runners\n• Task orchestration\nDescription:\n“Plans and sequences actions. Requests execution but does not touch the OS directly.”",
+        "label": "LAYER 4 — Agent Runtime / Orchestrator\nLocation: Application runtime\nPurpose: Coordinate workflows and tools\nExamples:\n• Agents\n• Sub-agents\n• Skill runners\n• Task orchestration\n“Plans and sequences actions. Requests execution but does not touch the OS directly.”",
         "role": "process",
         "lane": null,
         "group_id": "grp_main_stack",
@@ -80,7 +80,7 @@
       },
       {
         "id": "layer3",
-        "label": "LAYER 3 — Execution Boundary (Critical Control Plane)\nLocation: Inside agent runtime or wrapper process\nPurpose: Gate side-effecting actions\nExamples:\n• HumanLayer (human-in-the-loop approval wrapper)\n• Policy/ approval wrappers\n• SDK calls pass through this boundary before execution\n• Hooks (lifecycle + execution triggers)\nDescription:\n“Intercepts tool/SDK calls. Pauses before side effects. Requires approval. Logs decisions.”\n\nBoundary Between Intent and Action\nSDK → Wrapper → Execute",
+        "label": "LAYER 3 — Execution Boundary (Critical Control Plane)\nLocation: Inside agent runtime or wrapper process\nPurpose: Gate side-effecting actions\nExamples:\n• HumanLayer (human-in-the-loop approval wrapper)\n• Policy/ approval wrappers\n• SDK calls pass through this boundary before execution\n• Hooks (lifecycle + execution triggers)\n“Intercepts tool/SDK calls. Pauses before side effects. Requires approval. Logs decisions.”\n\nBoundary Between Intent and Action\nSDK → Wrapper → Execute",
         "role": "process",
         "lane": null,
         "group_id": "grp_main_stack",
@@ -91,7 +91,7 @@
       },
       {
         "id": "layer2",
-        "label": "LAYER 2 — CLI Programs (Deterministic Tools)\nLocation: Executable processes and scripts\nPurpose: Perform deterministic actions\nExamples:\n• CLI Programs\n• Scripts (wrapping CLI + SDK calls)\n• SDKs (libraries used by scripts/tools)\nDescription:\n“Deterministic programs. Call CLIs and SDK functions. Take inputs → produce outputs; no planning, no long-term memory.”",
+        "label": "LAYER 2 — CLI Programs (Deterministic Tools)\nLocation: Executable processes and scripts\nPurpose: Perform deterministic actions\nExamples:\n• CLI Programs\n• Scripts (wrapping CLI + SDK calls)\n• SDKs (libraries used by scripts/tools)\n“Deterministic programs. Call CLIs and SDK functions. Take inputs → produce outputs; no planning, no long-term memory.”",
         "role": "process",
         "lane": null,
         "group_id": "grp_main_stack",
@@ -102,7 +102,7 @@
       },
       {
         "id": "layer1",
-        "label": "LAYER 1 — Terminal + Shell (Command Interface)\nLocation: Terminal application\nPurpose: Text-based command interpretation and I/O\nExamples:\n• Terminal.app\n• Bash / zsh\nDescription:\n“Terminal provides text-only window; shell interprets commands + launches tools via text I/O streams. No screen or GUI awareness.”",
+        "label": "LAYER 1 — Terminal + Shell (Command Interface)\nLocation: Terminal application\nPurpose: Text-based command interpretation and I/O\nExamples:\n• Terminal.app\n• Bash / zsh\n“Terminal provides text-only window; shell interprets commands + launches tools via text I/O streams. No screen or GUI awareness.”",
         "role": "process",
         "lane": null,
         "group_id": "grp_main_stack",
@@ -113,7 +113,7 @@
       },
       {
         "id": "layer0",
-        "label": "LAYER 0 — Operating System\nLocation: Physical machine\nPurpose: Execute real side effects\nExamples:\n• Linux / macOS Kernel\n• Filesystem\n• Network stack\nDescription:\n“Where irreversible actions happen: processes, files, network I/O.”",
+        "label": "LAYER 0 — Operating System\nLocation: Physical machine\nPurpose: Execute real side effects\nExamples:\n• Linux / macOS Kernel\n• Filesystem\n• Network stack\n“Where irreversible actions happen: processes, files, network I/O.”",
         "role": "process",
         "lane": null,
         "group_id": "grp_main_stack",
@@ -123,30 +123,19 @@
         "data": { "font_family": "sans-serif" }
       },
       {
-        "id": "persist_header",
-        "label": "LAYER 2.5 — Persistence & Traceability (Side Channel)",
-        "role": "note",
+        "id": "layer2.5",
+        "label": "LAYER 2.5 — Persistence & Traceability (Side Channel)\nLocation: Local + remote services\nPurpose: Store history and collaboration state\nExamples:\n• Git (local repository)\n• GitHub (remote repo, PRs, audit history)\n"Durable memory and traceability. Not execution. Not reasoning."",
+        "role": "process",
         "lane": null,
         "group_id": "grp_persistence",
         "position": { "x": 1330, "y": 260 },
         "size": { "width": 450, "height": 50 },
         "style": { "shape": "rectangle", "fill_color": "#FFFFFF", "border_color": "#111827" },
-        "data": { "font_family": "sans-serif", "text_align": "center" }
-      },
-      {
-        "id": "persist_body",
-        "label": "Location: Local + remote services\nPurpose: Store history and collaboration state\nExamples:\n• Git (local repository)\n• GitHub (remote repo, PRs, audit history)\nDescription:\n“Durable memory and traceability. Not execution. Not reasoning.”\n\nDesign note:\nShow this as a parallel vertical column connected to CLI and Agent layers with dashed lines.",
-        "role": "process",
-        "lane": null,
-        "group_id": "grp_persistence",
-        "position": { "x": 1330, "y": 315 },
-        "size": { "width": 450, "height": 270 },
-        "style": { "shape": "rectangle", "fill_color": "#FFFFFF", "border_color": "#111827" },
-        "data": { "font_family": "sans-serif" }
+        "data": { "font_family": "sans-serif"}
       },
       {
         "id": "gui_layer",
-        "label": "SEPARATE SIDE LAYER — Screen / GUI Environment\nLocation: Desktop environment\nPurpose: Visual user interface\nExamples:\n• Browser windows\n• IDEs\n• Desktop apps\nDescription:\n“Not visible to terminal or CLIs by default.”",
+        "label": "SEPARATE SIDE LAYER — Screen / GUI Environment\nLocation: Desktop environment\nPurpose: Visual user interface\nExamples:\n• Browser windows\n• IDEs\n• Desktop apps\n“Not visible to terminal or CLIs by default.”",
         "role": "process",
         "lane": null,
         "group_id": "grp_gui",
