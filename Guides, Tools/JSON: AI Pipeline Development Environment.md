@@ -173,17 +173,62 @@
         "style": { "shape": "rectangle", "fill_color": "#FFFFFF", "border_color": "#F97316" },
         "data": { "font_family": "sans-serif", "text_align": "center" }
       },
-      {
-        "id": "footer",
-        "label": "FOOTER (small text; respect spacing, line breaks and bold formatting)\n“Terminals stream text I/O - CLIs and SDKs provide interfaces - LLMs reason - Agents orchestrate - Wrappers gate execution (HumanLayer gates with human approval) - Git records what happened\n\nSlash Commands: user-invoked shortcuts that start workflows - Agents autonomously orchestrate work - Hooks: automatic triggers on start/finish cycles and events”",
-        "role": "note",
-        "lane": null,
-        "group_id": "grp_footer",
-        "position": { "x": 140, "y": 1045 },
-        "size": { "width": 1640, "height": 120 },
-        "style": { "shape": "rectangle", "fill_color": "#FFFFFF", "border_color": "#FFFFFF" },
-        "data": { "font_family": "sans-serif", "font_size_hint": "small", "text_align": "left" }
-      }
+  {
+    "id": "footer_row1",
+    "label": "“Terminals stream text I/O  -  CLIs and SDKs provide interfaces  -  LLMs reason  -  Agents orchestrate -  Wrappers gate execution (HumanLayer gates with human approval)  -  Git records what happened",
+    "role": "note",
+    "lane": null,
+    "group_id": "grp_footer",
+    "position": { "x": 140, "y": 1045 },
+    "size": { "width": 1640, "height": 50 },
+    "style": { "shape": "rectangle", "fill_color": "#FFFFFF", "border_color": "#FFFFFF" },
+    "data": {
+      "font_family": "sans-serif",
+      "font_size_hint": "small",
+      "text_align": "left",
+      "text_runs": [
+        { "text": "“" },
+        { "text": "Terminals", "attributes": { "bold": true } },
+        { "text": " stream text I/O  -  " },
+        { "text": "CLIs", "attributes": { "bold": true } },
+        { "text": " and " },
+        { "text": "SDKs", "attributes": { "bold": true } },
+        { "text": " provide interfaces  -  " },
+        { "text": "LLMs", "attributes": { "bold": true } },
+        { "text": " reason  -  " },
+        { "text": "Agents", "attributes": { "bold": true } },
+        { "text": " orchestrate -  " },
+        { "text": "Wrappers", "attributes": { "bold": true } },
+        { "text": " gate execution (HumanLayer gates with human approval)  -  " },
+        { "text": "Git", "attributes": { "bold": true } },
+        { "text": " records what happened" }
+      ]
+    }
+  },
+  {
+    "id": "footer_row2",
+    "label": "“Slash Commands: user-invoked shortcuts that start workflows  -  Agents autonomously orchestrate work  -  Hooks: automatic triggers on start/finish cycles and events”",
+    "role": "note",
+    "lane": null,
+    "group_id": "grp_footer",
+    "position": { "x": 140, "y": 1115 },
+    "size": { "width": 1640, "height": 50 },
+    "style": { "shape": "rectangle", "fill_color": "#FFFFFF", "border_color": "#FFFFFF" },
+    "data": {
+      "font_family": "sans-serif",
+      "font_size_hint": "small",
+      "text_align": "left",
+      "text_runs": [
+        { "text": "“" },
+        { "text": "Slash Commands", "attributes": { "bold": true } },
+        { "text": ": user-invoked shortcuts that start workflows  -  " },
+        { "text": "Agents", "attributes": { "bold": true } },
+        { "text": " autonomously orchestrate work  -  " },
+        { "text": "Hooks", "attributes": { "bold": true } },
+        { "text": ": automatic triggers on start/finish cycles and events”" }
+      ]
+    }
+  }
     ],
     "edges": [
       { "id": "e_5_4", "from": "layer5", "to": "layer4", "label": "", "style": { "line_type": "straight", "arrowhead": "standard" } },
