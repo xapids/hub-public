@@ -1,5 +1,9 @@
 {
-  "diagram_spec": {
+"diagram_spec": {
+    "styles": {
+      "edge_dashed_no_arrow": { "line_type": "dashed", "arrowhead": "none", "stroke_width": 2 },
+      "edge_dashed_arrow": { "line_type": "dashed", "arrowhead": "standard", "stroke_width": 2 }
+    },
     "meta": {
       "spec_version": "1.0.0",
       "title": "AI Pipeline Development Stack",
