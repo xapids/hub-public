@@ -122,7 +122,7 @@ Effectively, GitHub is a high‑efficiency collaborative file management environ
 
 ## AI Pipeline Development Environment
 
-Durinn your own exploration of the environment, you will likely come across several terminologies. I wanted to provide you an infographic that would allow you to easierly understand the relationships between them.
+During your own exploration of the environment, you will likely come across several terminologies. I wanted to provide you an infographic that would allow you to easierly structure them and understand their relationships.
 
 Its slightly messy, Nano Banana and I weren't vibing so well.
 
