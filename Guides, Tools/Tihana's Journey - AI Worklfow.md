@@ -106,15 +106,11 @@ CodeLayer UI on Windows via a remote hosted macOS machine
 
 ## GitHub
 
-A GitHub repository gives you:
-- Versioned file storage
-- Full history of changes
-- Ability to branch, revert, and experiment safely
-- Private or public repositories
+GitHub is a high‑efficiency collaborative file management environment. 
 
-Effectively, GitHub is a high‑efficiency collaborative file management environment. 
+GitHub has great documentation. Read through it first: https://docs.github.com/en
 
-## CLIs and GitHub Guide
+## CLIs + GitHub Guide
 - Guide written by me - `/LLM CLI + Git, Github Guide.md`
 - Explains ONLY how LLM CLIs and Git/GitHub work together - This is NOT a guide on how GitHub itself works. It does NOT replace a guide specificaly for how GitHub works. 
 
