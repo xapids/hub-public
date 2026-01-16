@@ -112,6 +112,15 @@ GitHub has great documentation. Read through it first: https://docs.github.com/e
 
 When creating repos, think of name carefully. Changing the name later has very tedious side-affects. For folders and files too, but drastcially less.
 
+### Repositories
+#### Hub-Public
+- My public repo which includes this guide
+- Purpose: you can edit the files there
+
+#### AI Tools
+- Our public repo for shared tools like agents, comannds, hooks, skills etc.
+- Purpose: A main source of truth for shared tools. Due to how git/github works, its important to keep these seperate from our other docs, so that we can easily pull/push/clone into our settings, without including all the other “junk”
+
 ## CLIs + GitHub Guide
 - Guide written by me - `/LLM CLI + Git, Github Guide.md`
 - Explains ONLY how LLM CLIs and Git/GitHub work together - This is NOT a guide on how GitHub itself works. It does NOT replace a guide specificaly for how GitHub works. 
